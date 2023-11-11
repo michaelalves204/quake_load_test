@@ -8,7 +8,7 @@ require 'json'
 module Client
   # This class is responsible for making HTTP requests to a specified URL.
   class Request
-    HTTP_VERBS = %w[get post put].freeze
+    HTTP_VERBS = %w[get post put patch delete].freeze
 
     RESPONSE_STATUS_MESSAGE =
       {
@@ -61,15 +61,21 @@ module Client
     def type_request
       return unless HTTP_VERBS.include?(type)
 
-      case type
-      when 'get'
-        @request = Net::HTTP::Get.new(url)
-      when 'post'
-        @request = Net::HTTP::Post.new(url)
-        request.body = data
-      else
-        raise "Non-support request type: #{type}"
-      end
+      @request = http_request_class.new(url)
+
+      request.body = data if %w[post put patch].include?(type)
+    rescue NoMethodError
+      raise "Non-support request type: #{type}"
+    end
+
+    def http_request_class
+      {
+        'get' => Net::HTTP::Get,
+        'post' => Net::HTTP::Post,
+        'put' => Net::HTTP::Put,
+        'patch' => Net::HTTP::Patch,
+        'delete' => Net::HTTP::Delete
+      }[type]
     end
 
     def authorization

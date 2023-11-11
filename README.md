@@ -11,7 +11,7 @@ git clone https://github.com/michaelalves204/quake_load_test
 ```bash
 cd quake_load_test
 gem build quake.gemspec
-gem install quake-0.0.0.gem
+gem install quake-1.0.0.gem
 bundle install
 ```
 

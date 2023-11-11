@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    concurrent-ruby (1.2.2)
+    rake (13.1.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  concurrent-ruby
+  rake (~> 13.1)
+
+BUNDLED WITH
+   2.4.21

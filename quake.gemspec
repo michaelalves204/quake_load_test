@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'quake'
-  s.version     = '0.0.0'
+  s.version     = '1.0.0'
   s.summary     = 'Quake!'
   s.description = 'stress testing in apis'
   s.authors     = ['Michael Alves']
